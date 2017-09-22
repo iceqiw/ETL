@@ -5,7 +5,7 @@
 from peewee import MySQLDatabase,Model
 from playhouse.pool import PooledMySQLDatabase
 from peewee import *
-import datetime
+from  datetime  import  *  
 # 2. 建立数据库实例
 db = PooledMySQLDatabase(
     database='test',
@@ -30,3 +30,13 @@ class TrainSearch(BaseModel):
     startStation = CharField()
     endStation = CharField()
 
+class TrainLog(BaseModel):
+    id = PrimaryKeyField()
+    trainNo = CharField()
+    date = CharField()
+    startStation = CharField()
+    endStation = CharField()
+    seats=CharField()
+    createTime=DateTimeField(default=datetime.now())
+
+db.create_tables([TrainLog], safe=True)

@@ -33,7 +33,7 @@ def search(date, start, end, tf):
     url = getUrl(date, start, end)
     http = urllib3.PoolManager()
     resp = http.request('GET', url, headers=hd)
-    out= parseData(resp, tf, date)
+    out = parseData(resp, tf, date)
     return out
 
 
@@ -46,8 +46,15 @@ def parseData(resp, tf, date):
         # print(out)
         if tf == out['train']:
             out['date'] = date
-            out['start']= stations[out['start']]
-            out['end']= stations[out['end']]
+            out['start'] = stations[out['start']]
+            out['end'] = stations[out['end']]
+            if out['yw'] != '无':
+                TrainLog.create(
+                    trainNo=out['train'],
+                    date=date,
+                    seats=out['yw'],
+                    startStation=out['start'],
+                    endStation= out['end'])
             return out
 
 
@@ -65,9 +72,10 @@ def parseTrain(train):
 
     return res
 
+
 def searchTrain():
     for t in TrainSearch.select():
-        print(search(t.date,t.startStation,t.endStation,t.trainNo))
+        print(search(t.date, t.startStation, t.endStation, t.trainNo))
 
 
 searchTrain()
