@@ -5,11 +5,10 @@ import smtplib
 import email.mime.multipart  
 import email.mime.text
 
-sender = 'qqwei1123@163.com'
-receiver = '418419818@qq.com'
+sender = '*****@163.com'
+receiver = '**@qq.com'
 subject = '火车票通知:'
-username = 'qqwei1123@163.com'
-password = 'qiwei19881207'
+password = '********'
 
 def sendEmail(end):
     msg = email.mime.multipart.MIMEMultipart()  
@@ -26,7 +25,7 @@ def sendEmail(end):
 
     smtp = smtplib.SMTP()
     smtp.connect('smtp.163.com','25')
-    smtp.login(username, password)
+    smtp.login(sender, password)
     smtp.sendmail(sender, receiver, msg.as_string())
     smtp.quit()
     print('-----------------------ok-----------------------')
