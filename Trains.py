@@ -4,6 +4,7 @@ import urllib3
 import json
 import pymysql
 from Models import *
+from Email import *
 urllib3.disable_warnings()
 hd = {
     'user-agent':
@@ -46,10 +47,10 @@ def parseData(resp, tf, date):
         # print(out)
         if tf == out['train']:
             out['date'] = date
-
             out['start'] = stations[out['start']]
             out['end'] = stations[out['end']]
             if out['yw'] != '无':
+                sendEmail(out['end'])
                 TrainLog.create(
                     trainNo=out['train'],
                     date=date,
