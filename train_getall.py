@@ -3,7 +3,6 @@
 import urllib3
 import json
 import pymysql
-from Models import *
 from common import *
 from trains_num import *
 
@@ -59,10 +58,4 @@ def parseTrain(train):
 
     return res
 
-
-def searchTrain():
-    for t in TrainSearch.select():
-        requestData(t.date, t.startStation, t.endStation, t.trainNo)
-
-
-searchTrain()
+requestData('2017-10-01', 'FZS', 'BJY', 'T306')
