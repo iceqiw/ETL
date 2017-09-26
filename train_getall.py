@@ -6,6 +6,10 @@ import pymysql
 from common import *
 from trains_num import *
 
+import time
+#返回当前时间
+def GetNowTime():
+    return time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(time.time()))
 
 def getUrl(date, start, end):
     urlTpl = 'http://kyfw.12306.cn/otn/leftTicket/queryX?leftTicketDTO.train_date=%s&leftTicketDTO.from_station=%s&leftTicketDTO.to_station=%s&purpose_codes=ADULT'
@@ -39,6 +43,7 @@ def parseData(resp, start, date, trainNo, isfirst):
                             print(ex)
             trainInfo['start'] = stations[trainInfo['start']]
             trainInfo['end'] = stations[trainInfo['end']]
+            trainInfo['modifyTime']= GetNowTime()
             print(trainInfo)
                         
 
