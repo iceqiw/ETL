@@ -5,8 +5,9 @@ import json
 import pymysql
 from common import *
 import pandas as pd
+from conf import *
 
-station=pd.read_csv('ST.txt',sep='|',header=None,encoding='utf-8')
+station=pd.read_csv(STfile,sep='|',header=None,encoding='utf-8')
 station.columns = ['pyshort', 'name', 'code', 'pylong', 'e','id']
 
 def getUrl(train_no, from_station_telecode, to_station_telecode,depart_date):
