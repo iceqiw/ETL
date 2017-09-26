@@ -5,6 +5,11 @@ import json
 import pymysql
 from Models import *
 from Email import *
+import time
+#返回当前时间
+def GetNowTime():
+    return time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(time.time()))
+
 urllib3.disable_warnings()
 hd = {
     'user-agent':
@@ -77,6 +82,6 @@ def parseTrain(train):
 
 def searchTrain():
     for t in TrainSearch.select():
-        print(search(t.date, t.startStation, t.endStation, t.trainNo))
+        print(GetNowTime(),search(t.date, t.startStation, t.endStation, t.trainNo))
 
 searchTrain()
