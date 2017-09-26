@@ -4,11 +4,7 @@
 import smtplib
 import email.mime.multipart  
 import email.mime.text
-
-sender = '*****@163.com'
-receiver = '**@qq.com'
-subject = '火车票通知:'
-password = '********'
+from conf import *
 
 def sendEmail(end):
     msg = email.mime.multipart.MIMEMultipart()  
