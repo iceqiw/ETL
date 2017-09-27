@@ -56,10 +56,10 @@ def parseTrain(train):
     res['date'] = line[13]
     res['start'] = line[6]  #起点
     res['end'] = line[7]  #终点
-    res['rw'] = line[23]  #软卧
-    res['yw'] = line[28]  #硬卧
-    res['yz'] = line[29]  #硬座
-    res['wz'] = line[26]  #无座
+    res['soft_sleeper'] = line[23]  #软卧
+    res['hard_sleeper'] = line[28]  #硬卧
+    res['hard_seat'] = line[29]  #硬座
+    res['none_seat'] = line[26]  #无座
 
     return res
 
