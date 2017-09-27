@@ -54,6 +54,7 @@ def parseData(resp, tf, date):
             out['date'] = date
             out['start'] = stations[out['start']]
             out['end'] = stations[out['end']]
+            out['modifyTime']= GetNowTime()
             if out['yw'] != '无':
                 sendEmail(out['end'])
                 TrainLog.create(
@@ -82,6 +83,6 @@ def parseTrain(train):
 
 def searchTrain():
     for t in TrainSearch.select():
-        print(GetNowTime(),search(t.date, t.startStation, t.endStation, t.trainNo))
+        print(search(t.date, t.startStation, t.endStation, t.trainNo))
 
 searchTrain()
