@@ -7,6 +7,7 @@ import email.mime.text
 from conf import *
 
 def sendEmail(end):
+    print('-----------------------sendEmail-----------------------')
     msg = email.mime.multipart.MIMEMultipart()  
     msg['Subject'] = subject+end
     msg['From'] = sender
