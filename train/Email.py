@@ -29,8 +29,8 @@ def sendEmail(train,cfg):
     '''  
     txt = email.mime.text.MIMEText(content)  
     msg.attach(txt)  
-    smtp = smtplib.SMTP()
-    smtp.connect('smtp.163.com','25')
+    smtp = smtplib.SMTP_SSL()
+    smtp.connect('smtp.163.com',465)
     smtp.login(cfg.sender, cfg.password)
     smtp.sendmail(cfg.sender, cfg.receiver, msg.as_string())
     smtp.quit()
