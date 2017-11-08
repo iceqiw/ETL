@@ -11,7 +11,7 @@ db = PooledMySQLDatabase(
     database='test',
     host='localhost',
     port=3306,
-    user='qiwei',
+    user='root',
     passwd='123456',
     charset='utf8')
 
@@ -30,4 +30,11 @@ class train_search(BaseModel):
     start_station = CharField()
     end_station = CharField()
 
-db.create_tables([], safe=True)
+class send_cfg(BaseModel):
+    id = PrimaryKeyField()
+    sender = CharField()
+    receiver = CharField()
+    password = CharField()
+    train_no = CharField()
+
+db.create_tables([send_cfg], safe=True)

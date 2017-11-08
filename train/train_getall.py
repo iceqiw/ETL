@@ -5,6 +5,7 @@ import json
 from common import *
 from Models import train_search
 import time
+from Email import *
 #返回当前时间
 def GetNowTime():
     return time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(time.time()))
@@ -29,6 +30,8 @@ def parseData(resp, start, date, trainNo, isfirst):
     for train in trains:
         trainInfo = parseTrain(train)
         print(trainInfo)
+        runSend(trainInfo)
+       
                         
 def parseTrain(train):
     line = train.split('|')

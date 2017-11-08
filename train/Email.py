@@ -4,14 +4,24 @@
 import smtplib
 import email.mime.multipart  
 import email.mime.text
-from conf import *
+from Models import send_cfg
 
-def sendEmail(end):
+def runSend(train):
+    if train['hard_sleeper'] == '无':
+        print('-----------------------raise-----------------------')
+        return
+    
+    for s in send_cfg.select():
+        sendEmail(train,s)
+
+
+def sendEmail(train,cfg):
+    subject = '火车票通知:'
     print('-----------------------sendEmail-----------------------')
     msg = email.mime.multipart.MIMEMultipart()  
-    msg['Subject'] = subject+end
-    msg['From'] = sender
-    msg['To'] =receiver   
+    msg['Subject'] = subject+train['end']
+    msg['From'] = cfg.sender
+    msg['To'] =cfg.receiver   
     content = ''' 
         tongzhi ,huochepiao
         这是一封自动发送的邮件。 
@@ -19,10 +29,9 @@ def sendEmail(end):
     '''  
     txt = email.mime.text.MIMEText(content)  
     msg.attach(txt)  
-
     smtp = smtplib.SMTP()
     smtp.connect('smtp.163.com','25')
-    smtp.login(sender, password)
-    smtp.sendmail(sender, receiver, msg.as_string())
+    smtp.login(cfg.sender, cfg.password)
+    smtp.sendmail(cfg.sender, cfg.receiver, msg.as_string())
     smtp.quit()
     print('-----------------------ok-----------------------')
