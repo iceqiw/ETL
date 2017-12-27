@@ -48,5 +48,6 @@ def parseTrain(train):
     return res
 
 if __name__=="__main__":
-    for t in train_search.select():
-        requestData(t.date, t.start_station, t.end_station, t.train_no)
+    while True:
+        for t in train_search.select():
+            requestData(t.date, t.start_station, t.end_station, t.train_no)

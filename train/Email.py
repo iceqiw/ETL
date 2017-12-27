@@ -5,6 +5,7 @@ import smtplib
 import email.mime.multipart  
 import email.mime.text
 from Models import send_cfg
+import time
 
 def runSend(train):
     if train['hard_sleeper'] == '无':
@@ -13,7 +14,7 @@ def runSend(train):
     
     for s in send_cfg.select():
         sendEmail(train,s)
-
+    time.sleep( 5 )
 
 def sendEmail(train,cfg):
     subject = '火车票通知:'
