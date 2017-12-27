@@ -23,6 +23,7 @@ def requestData(date, start, end, trainNo, isfirst=True):
     parseData(resp, start, date, trainNo, isfirst)
 
 def parseData(resp, start, date, trainNo, isfirst):
+    print(resp.data)
     data = json.loads(resp.data.decode('utf-8'))
     trains = data['data']['result']
     stations = data['data']['map']
