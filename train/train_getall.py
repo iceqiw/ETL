@@ -22,7 +22,6 @@ def requestData(date, start, end, trainNo, isfirst=True):
     resp = http.request('GET', url, headers=hd)
     parseData(resp, start, date, trainNo, isfirst)
 
-
 def parseData(resp, start, date, trainNo, isfirst):
     data = json.loads(resp.data.decode('utf-8'))
     trains = data['data']['result']
