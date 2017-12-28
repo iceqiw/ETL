@@ -23,14 +23,14 @@ def requestData(date, start, end, trainNo, isfirst=True):
     parseData(resp, start, date, trainNo, isfirst)
 
 def parseData(resp, start, date, trainNo, isfirst):
-    print(resp.data)
     data = json.loads(resp.data.decode('utf-8'))
     trains = data['data']['result']
     stations = data['data']['map']
     for train in trains:
         trainInfo = parseTrain(train)
         print(trainInfo)
-        runSend(trainInfo)
+        if runSend(trainInfo):
+            time.sleep(60)
        
                         
 def parseTrain(train):
@@ -47,6 +47,14 @@ def parseTrain(train):
     res['none_seat'] = line[26]  #无座
     return res
 
-if __name__=="__main__":
+def runMain():
     for t in train_search.select():
-        requestData(t.date, t.start_station, t.end_station, t.train_no)
+        requestData(t.date, t.start_station, t.end_station, t.train_no) 
+
+if __name__=="__main__":
+    while True:
+        try:
+            runMain()
+        except Exception as ex:
+            pass
+        time.sleep(3)

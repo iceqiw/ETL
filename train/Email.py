@@ -9,10 +9,13 @@ from Models import send_cfg
 def runSend(train):
     if train['hard_sleeper'] == '无':
         print('-----------------------raise-----------------------')
-        return
-    
+        return False
+    if train['hard_sleeper'] == '*':
+        print('-----------------------raise-----------------------')
+        return False
     for s in send_cfg.select():
         sendEmail(train,s)
+    return True
 
 
 def sendEmail(train,cfg):
