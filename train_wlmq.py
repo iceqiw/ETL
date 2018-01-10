@@ -12,6 +12,8 @@ urllib3.disable_warnings()
 
 FLAGS={}
 
+oldTrain=None
+
 parser = argparse.ArgumentParser()
 # Basic model parameters.
 parser.add_argument(
@@ -107,6 +109,18 @@ def parseTrain(train):
 
 
 def sendEmail(train):
+    global oldTrain
+    print(train)
+    print(oldTrain)
+    if oldTrain is None:
+        oldTrain=train
+        return
+
+    if train==oldTrain:
+        print('--------------------------no change--------------------------')
+        oldTrain=train
+        return
+
     print('-----------------------sendEmail-----------------------')
     msg = email.mime.multipart.MIMEMultipart()  
     msg['Subject'] = "END:"+train['end']+",hard_sleeper:"+train['hard_sleeper']
@@ -139,4 +153,4 @@ if __name__=="__main__":
            requestData(http,FLAGS.date, FLAGS.start_station, FLAGS.end_station, FLAGS.train_no,FLAGS.query_key) 
         except Exception as ex:
             print(ex)
-        time.sleep(3600*3)
+        time.sleep(35)

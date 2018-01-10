@@ -31,12 +31,3 @@ def trainNo_station_code(train_no, from_station_telecode, to_station_telecode,de
     nostation=pd.DataFrame(trainCode,columns=['zh'])
     out=pd.merge(nostation, station, left_on='zh',right_on='name')
     return out.code
-
-
-
-
-
-
-
-
-

@@ -108,13 +108,14 @@ def parseTrain(train):
 
 
 def sendEmail(train):
-    if train['hard_sleeper'] == '无':
-        print('-----------------------raise-----------------------')
+    if train['soft_sleeper'] == '无' and train['hard_sleeper'] == '无':
+        print('----------hard_sleeper'+train['hard_sleeper']+'-------------raise-----------------------')
         return False
     if train['hard_sleeper'] == '*':
-        print('-----------------------raise-----------------------')
+        print('----------hard_sleeper'+train['hard_sleeper']+'-------------raise-----------------------')
         return False
     print('-----------------------sendEmail-----------------------')
+
     msg = email.mime.multipart.MIMEMultipart()  
     msg['Subject'] = "END:"+train['end']+",hard_sleeper:"+train['hard_sleeper']
     msg['From'] = 'qqwei1123@163.com'
@@ -146,4 +147,5 @@ if __name__=="__main__":
            requestData(http,FLAGS.date, FLAGS.start_station, FLAGS.end_station, FLAGS.train_no,FLAGS.query_key) 
         except Exception as ex:
             print(ex)
+        
         time.sleep(5)
