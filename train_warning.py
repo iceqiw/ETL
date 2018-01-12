@@ -42,7 +42,7 @@ parser.add_argument(
     '--query_key',
     type=str,
     default='query',
-    help='querykey .')
+    help='query_key .')
 
 parser.add_argument(
     '--password',
@@ -142,9 +142,13 @@ def sendEmail(train):
 if __name__=="__main__":
     http = urllib3.PoolManager(cert_reqs='CERT_NONE')
     FLAGS, unparsed = parser.parse_known_args()
+    ends_st=['BJY','WSJ','TSJ','DHR']
+    ds=['2018-01-26','2018-02-10']
     while True:
         try:
-           requestData(http,FLAGS.date, FLAGS.start_station, FLAGS.end_station, FLAGS.train_no,FLAGS.query_key) 
+            for ed in ends_st:
+                for dd in ds:
+                    requestData(http,dd,FLAGS.start_station,ed,FLAGS.train_no,FLAGS.query_key) 
         except Exception as ex:
             print(ex)
         
